@@ -1,14 +1,27 @@
-# Java
-/backend/target/
-/backend/.idea/
-/backend/*.iml
+# --- FRONTEND (Angular) ---
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+frontend/.env
+frontend/.idea/
+frontend/.vscode/
 
-# Node
-/frontend/node_modules/
-/frontend/dist/
-/frontend/.angular/
+# --- BACKEND (Spring Boot) ---
+backend/target/
+backend/.classpath
+backend/.project
+backend/.settings/
+backend/*.iml
+backend/*.log
+backend/src/main/resources/application.properties
 
-# Sistema
-.DS_Store
+# --- General ---
 *.log
-
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+*.swp
+.env
+.idea/
+.vscode/
