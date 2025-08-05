@@ -1,5 +1,5 @@
 {
-  "name": "canciones",
+  "name": "revalisso",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:canciones": "node dist/canciones/server/server.mjs"
+    "serve:ssr:revalisso": "node dist/revalisso/server/server.mjs"
   },
   "private": true,
   "dependencies": {
@@ -19,13 +19,14 @@
     "@angular/platform-server": "^20.0.0",
     "@angular/router": "^20.0.0",
     "@angular/ssr": "^20.0.3",
+    "@fortawesome/fontawesome-free": "^7.0.0",
     "express": "^5.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@angular/build": "^20.0.3",
+    "@angular-devkit/build-angular": "^20.1.4",
     "@angular/cli": "^20.0.3",
     "@angular/compiler-cli": "^20.0.0",
     "@types/express": "^5.0.1",

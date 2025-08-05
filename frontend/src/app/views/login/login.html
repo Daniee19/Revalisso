@@ -1,0 +1,36 @@
+<div class="login-container">
+    <div class="log-container_1">
+        <h4>Revalisso <i class="fa-solid fa-recycle" style="color: #000000;"></i></h4>
+        <br/>
+        <h2>Iniciar Sesión</h2>
+        <form [formGroup]="form" (ngSubmit)="login()">
+
+            <div class="form-group">
+                <label for="correo">Correo electrónico:</label>
+                <input type="email" id="correo" formControlName="correo" placeholder="ejemplo@correo.com">
+
+                @if (form.get('correo')?.touched && form.get('correo')?.hasError('required')) {
+                <div class="error">El correo es obligatorio</div>
+                } @else if (form.get('correo')?.touched && form.get('correo')?.hasError('email')) {
+                <div class="error">El formato del correo es inválido</div>
+                }
+            </div>
+
+            <div class="form-group">
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" formControlName="contrasena" placeholder="********">
+
+                @if (form.get('contrasena')?.touched && form.get('contrasena')?.hasError('required')) {
+                <div class="error">La contraseña es obligatoria</div>
+                }
+            </div>
+
+            <button type="submit" [disabled]="form.invalid">Iniciar sesión</button>
+
+        </form>
+    </div>
+    <div class="log-container_2">
+        <img src="../../../assets/img/donations.png" alt="donations_img">
+    </div>
+    <script src="https://kit.fontawesome.com/c353473263.js" crossorigin="anonymous"></script>
+</div>
