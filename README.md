@@ -1,5 +1,8 @@
 # ♻️ Revalisso  
 **Transforma tus objetos en oportunidades.**
+<p align="center">
+<img src="https://img.shields.io/badge/ESTADO-EN DESARROLLO-green">
+</p>
 
 **Revalisso** es una plataforma web en desarrollo que permite a los usuarios **donar objetos o recursos** y recibir **puntos de recompensa**, que luego pueden **canjear por premios u otros productos**.  
 La idea principal es fomentar una cultura basada en la reutilización, la solidaridad y la economía circular.
@@ -35,3 +38,12 @@ Revalisso nace como una solución innovadora para incentivar el intercambio y ap
 
 ![Vista previa](bd.jpg)
 *Modelo conceptual inicial de la base de datos*
+
+## Autor
+<p align="left">
+  <a href="https://github.com/Daniee19">
+    <img src="https://avatars.githubusercontent.com/u/142465643?v=4" width="115">
+    <br>
+    <sub><b>Daniel Castañeda</b></sub>
+  </a>
+</p>
