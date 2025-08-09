@@ -1,7 +1,7 @@
 <div class="login-container">
     <div class="log-container_1">
         <h4>Revalisso <i class="fa-solid fa-recycle" style="color: #000000;"></i></h4>
-        <br/>
+        <br />
         <h2>Iniciar Sesión</h2>
         <form [formGroup]="form" (ngSubmit)="login()">
 
@@ -18,9 +18,9 @@
 
             <div class="form-group">
                 <label for="contrasena">Contraseña:</label>
-                <input type="password" id="contrasena" formControlName="contrasena" placeholder="********">
+                <input type="password" id="contrasena" formControlName="password" placeholder="********">
 
-                @if (form.get('contrasena')?.touched && form.get('contrasena')?.hasError('required')) {
+                @if (form.get('password')?.touched && form.get('password')?.hasError('required')) {
                 <div class="error">La contraseña es obligatoria</div>
                 }
             </div>
@@ -28,7 +28,10 @@
             <button type="submit" [disabled]="form.invalid">Iniciar sesión</button>
 
         </form>
+        <a routerLink="/register">No tengo cuenta aún</a>
     </div>
+    
+
     <div class="log-container_2">
         <img src="../../../assets/img/donations.png" alt="donations_img">
     </div>

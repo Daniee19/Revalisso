@@ -22,6 +22,12 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegisterRequest request) {
+        System.out.println("EL NOMBRE ES -> Nombre: " + request.getNombres());
+        System.out.println("Apellido: " + request.getApellidos());
+        System.out.println("EL CORREO ES: " + request.getCorreo());
+        System.out.println("Password: " + request.getPassword());
+        System.out.println("Celular: " + request.getCelular());
+        System.out.println("ROL: " + request.getRol());
         return ResponseEntity.ok(authService.register(request));
     }
 

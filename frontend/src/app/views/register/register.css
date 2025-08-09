@@ -1,0 +1,58 @@
+.register-container {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 0px 0px 0px 0px;
+    border-radius: 8px;
+    background: #fafafa;
+    display: flex;
+
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #0a3800;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button[disabled] {
+    background-color: #aaa;
+    cursor: not-allowed;
+}
+
+.error {
+    color: red;
+    font-size: 0.8em;
+}
+.reg-container_1{
+    width: 100%;
+    padding: 60px;
+    background-color: #cbcbcb;
+}
+.reg-container_2{
+    width: 100%;
+    padding: 10px 0px 0px 10px;
+}
+.reg-container_2 img{
+    height:100%;
+}

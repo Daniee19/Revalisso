@@ -3,6 +3,7 @@ import { appConfig } from './app/app.config';
 import { App } from './app/app';
 import { provideHttpClient } from '@angular/common/http';
 
+//ProvideRouter para manejar rutas (navegar)
 import { provideRouter } from '@angular/router';
 import { routes } from './app/app.routes';
 // bootstrapApplication(App, appConfig)

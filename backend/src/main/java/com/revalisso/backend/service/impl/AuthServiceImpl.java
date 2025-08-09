@@ -4,15 +4,20 @@ import com.revalisso.backend.dto.ChangePasswordRequest;
 import com.revalisso.backend.dto.LoginRequest;
 import com.revalisso.backend.dto.RegisterRequest;
 import com.revalisso.backend.entity.Persona;
+import com.revalisso.backend.entity.Rol;
 import com.revalisso.backend.repository.PersonaRepository;
+import com.revalisso.backend.repository.RolRepository;
 import com.revalisso.backend.service.CustomUserDetails;
 import com.revalisso.backend.service.IAuthService;
 import com.revalisso.backend.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
+import java.util.logging.Logger;
 
 @Service
 public class AuthServiceImpl implements IAuthService {
@@ -23,10 +28,13 @@ public class AuthServiceImpl implements IAuthService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private RolRepository rolRepository;
+
     @Override
     public boolean changePassword(ChangePasswordRequest request) {
 
-        Persona persona = personaRepository.findByCorreo(request.getCorreo()).orElseThrow(()-> new RuntimeException("Correo no encontrado"));
+        Persona persona = personaRepository.findByCorreo(request.getCorreo()).orElseThrow(() -> new RuntimeException("Correo no encontrado"));
 
         // Verificamos la contraseña antigua
         if (!passwordEncoder.matches(request.getOldPassword(), persona.getPassword())) {
@@ -41,27 +49,42 @@ public class AuthServiceImpl implements IAuthService {
 
     //El RegisterRequest es un DTO de Persona
     @Override
-    public String register(RegisterRequest request) {
+    public ResponseEntity<?> register(RegisterRequest request) {
+
+
+        //Si el id no se menciona entonces es 1 (ROL DE USUARIO)
+        Long rolId = request.getRol() != null ? request.getRol() : 1L;
+
+        Rol rolecito = rolRepository.findById(rolId).orElseThrow(() ->
+                new RuntimeException("Rol no encontrado"));
+
+
         Persona persona = Persona.builder()
-                .nombre(request.getNombre())
-                .apellido(request.getApellido())
+                .nombre(request.getNombres())
+                .apellido(request.getApellidos())
                 .celular(request.getCelular())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .correo(request.getCorreo())
+                .rol(rolecito)
                 .build();
+
+
         personaRepository.save(persona);
-        return "Registrado exitosamente";
+        return ResponseEntity.ok(Map.of("mensaje", "El usuario se ha registrado correctamente"));
     }
 
     //Es como decir ve a la clase que está implementando a la interface UserDetailsService
 
     @Autowired
     private JwtService jwtService;
+
     //El LoginRequest es un DTO de Persona
     @Override
     public String login(LoginRequest request) {
         System.out.println("El correo es: " + request.getCorreo());
-        //El uso del "orElseThrow", hace que se rompa el optional y se trabaje con la clase directo, sin tener que usar el Optional<Persona>
+        System.out.println("La contraseña es: " + request.getPassword());
+
+        //El uso del "orElseThrow", hace que se rompa el optional y se trabaje con la clase directa, sin tener que usar el Optional<Persona>
         //1. Autenticar usuario
         Persona persona = personaRepository.findByCorreo(request.getCorreo())
                 .orElseThrow(() -> new RuntimeException("Correo no registrado"));

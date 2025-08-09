@@ -9,9 +9,10 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class RegisterRequest  implements java.io.Serializable {
-    private String nombre;
-    private String apellido;
+    private String nombres;
+    private String apellidos;
     private String celular;
     private String correo;
     private String password;
+    private Long rol;
 }

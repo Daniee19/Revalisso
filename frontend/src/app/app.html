@@ -1,10 +1,10 @@
-@if(!isLoginRoute()){
+@if(!isLoginRoute() && !isRegisterRoute()){
 <app-header></app-header>
 }
 <main>
   <!--El routeroutlet va a traer los componentes que se definieron en las rutas-->
   <router-outlet></router-outlet>
 </main>
-@if ((!isLoginRoute())) {
+@if ((!isLoginRoute() && !isRegisterRoute())) {
 <app-footer></app-footer>
 }
