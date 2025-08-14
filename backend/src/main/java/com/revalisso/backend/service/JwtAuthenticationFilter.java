@@ -27,6 +27,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private PersonaRepository personaRepository;
 
+    /**
+     * El doFilterInternal se ejecuta antes de llegar al controlador.
+     * @param request
+     * @param response
+     * @param filterChain
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
@@ -42,8 +50,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         jwt = authHeader.substring(7); // Quita el "Bearer "
-        username = jwtService.extractUsername(jwt);
+        username = jwtService.extractUsername(jwt); //te da el email o nombre de usuario
 
+        /**
+         * Evita procesar 2 veces la autenticación en el contexto de la seguridad (creo que es un bloque sobre si ya fue evaluado)
+         */
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             Persona persona = personaRepository.findByCorreo(username).orElseThrow(()
                     -> new UsernameNotFoundException("Correo no encontrado"));
@@ -51,8 +62,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             UserDetails userDetails = new CustomUserDetails(persona);
 
             if (jwtService.isTokenValid(jwt, userDetails)) {
-                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                        userDetails, null, userDetails.getAuthorities());
+                UsernamePasswordAuthenticationToken authToken =
+                        new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
                 SecurityContextHolder.getContext().setAuthentication(authToken);

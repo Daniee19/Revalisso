@@ -47,7 +47,6 @@ export class Register {
         });
 
       console.log('Formulario de registro enviado:', this.form.value);
-      // Aquí iría tu llamada al backend
 
 
     }
