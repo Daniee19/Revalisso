@@ -1,6 +1,11 @@
 import { inject } from "@angular/core";
 import { CanActivateFn, Router } from "@angular/router";
+import { Auth } from "../services/auth";
 
+/**
+ * Por el momento tiene 2 implementaciones:
+ * Checkout y Profile
+ */
 export const authGuard: CanActivateFn = (route, state) => {
     /**
      * ? El authGuard es una función que se utiliza para proteger rutas en una aplicación Angular.
@@ -12,15 +17,13 @@ export const authGuard: CanActivateFn = (route, state) => {
      * ? El inject(Router) facilita la inyección del servicio Router en el guard. (Guard -> acceso o no a la ruta frontend)
      * Esto permite acceder a las funcionalidades de navegación de Angular.
      */
-    const router = inject(Router);
-    const token = localStorage.getItem('token');
+    
+    const authService = inject(Auth);
 
-    // Si no hay token, redirigir a la página de login
-    if (!token) {
-        router.navigateByUrl('/login');
-        return false;
+    if (authService.isAuthenticated()) {
+        // Si el usuario está autenticado, permite el acceso a la ruta
+        return true;
     }
+    return false; // Si no está autenticado, redirige al login
 
-    // Si hay token, permitir el acceso
-    return true;
 }

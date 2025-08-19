@@ -1,4 +1,6 @@
 import { HttpInterceptorFn } from "@angular/common/http";
+import { Auth } from "../services/auth";
+import { inject } from "@angular/core";
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
     /**
@@ -6,12 +8,14 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
      * ? Su propósito es agregar un token de autenticación a las solicitudes salientes (POST, GET, etc).
      * ! Si el token no existe, la solicitud se envía sin él.
      */
-    // Obtener el token del localStorage
-    const token = localStorage.getItem('token');
+    const auth = inject(Auth);
+    
+    // Obtener el token de autenticación del servicio Auth
+    const token = auth.getToken();
 
     // Rutas públicas donde NO queremos enviar token
     const publicPaths = ['/auth/login', '/auth/register'];
-    
+
     //Peticiones que no necesitan token
     const isPublic = publicPaths.some(path => req.url.includes(path));
     /**
@@ -19,7 +23,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
      * ! Esto es útil para evitar enviar el token en solicitudes que no lo requieren, como el registro o inicio de sesión.
      */
     if (token && !isPublic) {
-       
+
         const cloneReq = req.clone({
             /**
              * ? Aquí se clona la solicitud original y se le añade el token de autorización en los encabezados.
@@ -31,8 +35,8 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
         });
         return next(cloneReq);
     }
-   /**
-    * ? Si no hay token o la solicitud es a una ruta pública, se envía la solicitud original sin modificaciones.
-    */
-   return next(req);
+    /**
+     * ? Si no hay token o la solicitud es a una ruta pública, se envía la solicitud original sin modificaciones.
+     */
+    return next(req);
 }

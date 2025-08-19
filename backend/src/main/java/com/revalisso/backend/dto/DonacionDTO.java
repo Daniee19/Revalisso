@@ -16,19 +16,15 @@ import java.util.List;
 @Builder
 public class DonacionDTO implements Serializable {
     private PersonaDTO persona;
-
+    private EstadoDTO estado;
     private CategoriaDTO categoria;
 
     private List<HistorialPuntoDTO> historialPuntos;
-
-    private EstadoDTO estado;
-
     private List<ArchivoDTO> archivos;
-
     private List<ReseniaDonacionDTO> reseniasDonacion;
-
+    private Timestamp fechaDonacion;
     private int cantidadAproximada;
     private String tituloDonacion;
-    private Timestamp fechaDonacion;
+
     private String descripcionDonacion;
 }

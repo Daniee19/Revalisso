@@ -37,7 +37,7 @@ export class Register {
         .subscribe({
           next: response => {
             console.log(credentials);
-            this.router.navigate(["/"]);
+            this.router.navigate(["/login"]);
           },
           error: err => {
             console.error("Error de login", err);

@@ -95,7 +95,7 @@ public class AuthServiceImpl implements IAuthService {
         }
 
         //2. Cargar UserDetails
-        UserDetails userDetails = new CustomUserDetails(persona); //El userDetailsService implícitamente está yendo a la clase que implementa la interface UserDetailsService
+        UserDetails userDetails = new CustomUserDetails(persona);
 
         //3. Devolver el token
         return jwtService.generateToken(userDetails);

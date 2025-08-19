@@ -18,7 +18,7 @@ public class Rol {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idRol;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "rol", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "rol", cascade = CascadeType.ALL)
     private List<Persona> listaPersonas;
 
     @Column(name = "nombre_rol")

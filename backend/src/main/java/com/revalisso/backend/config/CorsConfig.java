@@ -8,6 +8,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 /**
  * Con esto se solucionaría el problema de CORS (Para poder trabajar con Angular). No confundir con el problema de CSRF.
  */
+
+/**
+ * Borrarlo
+ */
 @Configuration
 public class CorsConfig {
     @Bean

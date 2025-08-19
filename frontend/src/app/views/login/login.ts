@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   ReactiveFormsModule,
   FormBuilder,
@@ -8,6 +8,8 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import { Auth } from '../../services/auth';
+import { SnackBar } from '../../services/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -16,41 +18,44 @@ import { RouterModule } from '@angular/router';
   styleUrl: './login.css',
 })
 export class Login {
-  form: FormGroup;
 
-  constructor(
-    private fb: FormBuilder,
-    private http: HttpClient,
-    private router: Router
-  ) {
+  private snackBar = inject(SnackBar);
+  private authService = inject(Auth);
+  form: FormGroup;
+  // ? El FormBuilder permite crear formularios de manera más sencilla y declarativa.
+  // ! El FormGroup es una colección de controles de formulario. (validaciones, etc.)
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
     this.form = this.fb.group({
       correo: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
-  verificarJWT(){
-    console.log(localStorage.getItem('token'));
+
+  verificarJWT() {
+    this.snackBar.showSnackBar(this.authService.getToken() || 'No hay token');
   }
   login() {
-    const credentials = this.form.value;
 
-    this.http
-      .post<any>('http://localhost:9090/auth/login', credentials)
-      .subscribe({
-        next: (response) => {
-          localStorage.removeItem('token');
-          // Guardamos el token en el localStorage
-          // Esto permite que el token esté disponible para el authGuard y authInterceptor
-          localStorage.setItem('token', response.token); //Guardamos el JWT
-          console.log(response.token);
-          this.router.navigate(['/']);
-        },
-        error: (err) => {
-          //Si en caso el correo no está registrado, ... etc.
-          console.error('Error de login', err);
-          alert('Credenciales incorrectas');
-        },
-      });
+    console.log(this.form.value); //Retorna el objeto con los valores del formulario
+    this.authService.login(this.form.value).subscribe({
+      next: (response) => {
+        this.authService.setToken(response.token);
+
+        this.http.get('http://localhost:9090/api/user/profile')
+          .subscribe((user: any) => {
+            console.log("Lo traído del backend es: ", user)
+            this.authService.setUserData(user);
+          });
+
+        // Redirigir tras login
+        this.router.navigate(['/']);
+        this.snackBar.showSnackBar('Logueado con éxito');
+      },
+      error: (err) => {
+        //Si en caso el correo no está registrado, ... etc.
+        console.error('Error de login', err);
+        this.snackBar.showSnackBar('Credenciales incorrectas');
+      },
+    });
   }
-
 }

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { Auth } from '../../services/auth';
 
 @Component({
   selector: 'app-header',
@@ -8,14 +9,14 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './header.css'
 })
 export class Header {
-  constructor(private router: Router) { }
+  private authService = inject(Auth);
+  constructor() { }
   logout() {
     /**
      * ? El método logout elimina el token del localStorage y redirige al usuario a la página de inicio.
      * ! Esto es útil para cerrar sesión y evitar que el usuario acceda a rutas protegidas sin autenticación.
      */
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']);
-    console.log("Sesión cerrada");
+    this.authService.logout();
+
   }
 }

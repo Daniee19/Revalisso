@@ -1,17 +1,24 @@
 package com.revalisso.backend.service;
 
+import com.revalisso.backend.entity.Persona;
+import com.revalisso.backend.repository.PersonaRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
+
 @Service
 public class JwtService {
     @Value("${jwt.secret}")
     private String SECRET_KEY;
+
+    @Autowired
+    PersonaRepository personaRepository;
 
     /**
      * Se utiliza el userDetails porque tiene la información que el usuario se ha logueado (correo y el rol del usuario)
