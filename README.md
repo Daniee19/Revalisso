@@ -4,7 +4,7 @@
 <img src="https://img.shields.io/badge/ESTADO-EN DESARROLLO-green">
 </p>
 
-**Revalisso** es una plataforma web en desarrollo que permite a los usuarios **donar objetos o recursos** y recibir **puntos de recompensa**, que luego pueden **canjear por premios u otros productos**.  
+**Revalisso** es una plataforma web en desarrollo que permite a los usuarios **contribuir con objetos o recursos** y recibir **puntos de recompensa**, que luego pueden **canjear por premios u otros productos**.  
 La idea principal es fomentar una cultura basada en la reutilización, la solidaridad y la economía circular.
 
 ---
@@ -25,7 +25,8 @@ Revalisso nace como una solución innovadora para incentivar el intercambio y ap
 ## 🛠️ Tecnologías utilizadas
 
 ### 🌐 Frontend
-- 🅰️ Angular
+- 🅰️ Angular v20
+- 🎨 Tailwindcss v3
 
 ### 🧠 Backend
 - ☕ Spring Boot
