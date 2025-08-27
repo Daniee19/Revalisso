@@ -25,7 +25,8 @@ Revalisso nace como una solución innovadora para incentivar el intercambio y ap
 ## 🛠️ Tecnologías utilizadas
 
 ### 🌐 Frontend
-- 🅰️ Angular
+- 🅰️ Angular v20
+- 🎨 Tailwindcss v3
 
 ### 🧠 Backend
 - ☕ Spring Boot
