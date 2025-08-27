@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { Persona } from '../models/Persona';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,28 +15,32 @@ export class Auth {
   /**
  * * Con estas variables ya no se necesita usar `localStorage` directamente en el componente.
  */
-  private token: string | null = null;
-  private userData: any = null;
-
   // user = signal<{ name: string } | null>(null);
 
   setToken(token: string) {
-    this.token = token;
+    localStorage.setItem("token", token);
   }
 
   getToken(): string | null {
-    return this.token;
+    return localStorage.getItem("token");
   }
 
-  setUserData(data: any) {
-    this.userData = data;
+  removeToken() {
+    localStorage.removeItem("token");
   }
 
-  getUserData(): any {
-    return this.userData;
+  setUserData(data: Persona) {
+    localStorage.setItem("userData", JSON.stringify(data));
   }
 
+  getUserData(): Persona | null {
+    return localStorage.getItem("userData") ? JSON.parse(localStorage.getItem("userData")!) : null;
+  }
 
+  removeUserData() {
+    localStorage.removeItem("userData");
+  }
+  
   private http = inject(HttpClient);
   private router = inject(Router);
   private apiUrl = 'http://localhost:9090/auth'; // URL base de la API de autenticación
@@ -47,9 +51,13 @@ export class Auth {
     return this.http.post<{ token: string }>(`${this.apiUrl}/login`, credentials);
   }
 
+  register(credentials: { nombres: string; apellidos: string; correo: string; password: string; celular?: string }) {
+    return this.http.post<any>(`${this.apiUrl}/register`, credentials);
+  }
+
   logout() {
-    this.token = null;
-    this.userData = null;
+    this.removeToken();
+    this.removeUserData();
     this.router.navigate(['/login']);
   }
 

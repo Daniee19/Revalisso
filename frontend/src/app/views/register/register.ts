@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { HttpClient } from "@angular/common/http";
 import { Router } from '@angular/router';
+import { Auth } from '../../services/auth';
 
 @Component({
   selector: 'app-register',
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
   imports: [ReactiveFormsModule, RouterLink]
 })
 export class Register {
+  private authService = inject(Auth);
   form: FormGroup;
 
   constructor(
@@ -33,9 +35,9 @@ export class Register {
       const credentials = this.form.value;
 
       //La llamada al backend
-      this.http.post<any>("http://localhost:9090/auth/register", credentials)
+      this.authService.register(credentials)
         .subscribe({
-          next: response => {
+          next: () => {
             console.log(credentials);
             this.router.navigate(["/login"]);
           },

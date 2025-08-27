@@ -1,1 +1,94 @@
-<p>profile works!</p>
+<section class="h-screen bg-slate-300 pt-24">
+    <div class="container mx-auto bg-white flex rounded-lg shadow-md h-5/6">
+        <!-- Lado izquierdo -->
+        <div class="py-6 w-[27%] border-r border-gray-200 rounded-l-lg bg-slate-50">
+            <div class="px-4">
+                <a routerLink="/home"><i class="fa-solid fa-angle-left" style="color: #000000;"></i> Regresar
+                </a>
+            </div>
+            <div
+                class="flex flex-row items-center my-6 gap-6 font-bold text-2xl border-b border-gray-200 p-6">
+                <img src="../../../assets/img/foto_perfil.jpg" alt="foto_perfil" class="w-28 h-28 rounded-2xl mb-4">
+                <div>
+                    {{ user?.nombre }}
+                    {{ user?.apellido }}
+
+                    <p class="text-sm">Donaciones: {{ user?.donaciones?.length }}</p>
+
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-2 px-6 py-3">
+                <div>
+                    <h2>Correo electrónico</h2>
+                    <p>{{ user?.correo }}</p>
+                </div>
+                <div>
+                    <h2>Teléfono</h2>
+                    <p>{{ user?.celular }}</p>
+                </div>
+            </div>
+            <div class="flex p-6 gap-2">
+                <button class="bg-gray-700 text-white p-2 rounded-md" (click)="editProfile()">Edit Profile</button>
+                <button class="bg-gray-800 text-white p-2 rounded-md" (click)="logout()">Logout</button>
+            </div>
+        </div>
+        <!-- Lado derecho -->
+        <div class="p-6 w-[74%]">
+            <div class="flex flex-row gap-6 text-gray-800 font-bold pb-4 text-center">
+                <button (click)="tab = 'general'" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">General</button>
+                <button (click)="tab = 'actividad'" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Actividad
+                    reciente</button>
+
+                <button (click)="tab = 'puntos'" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Mis puntos</button>
+                <button (click)="tab = 'logros'" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Logros</button>
+                <button (click)="tab = 'historialDonaciones'" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Historial
+                    de
+                    donaciones</button>
+                <button (click)="tab = 'canjes'" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Canjes</button>
+                <button (click)="tab = 'configuracion'"
+                    class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Configuración</button>
+            </div>
+            <div class="flex flex-row gap-6 mt-3.5">
+                <!-- <div class="border border-gray-900 py-8 px-5 w-screen">HOLA </div>
+                <div class="border border-gray-900 py-8 px-5 w-screen"> QUE TAL 12%</div> -->
+                @if (tab === 'general') {
+                <h2>
+                    General
+                </h2>
+                }
+                @if (tab === 'actividad') {
+                <h2>
+                    Actividad
+                </h2>
+                }
+                @if (tab === 'puntos') {
+                <h2>
+                    Puntos
+                </h2>
+                }
+                @if (tab === 'logros') {
+                <h2>
+                    Logros
+                </h2>
+                }
+                @if (tab === 'historialDonaciones') {
+                <h2>
+                    Historial Donaciones
+                </h2>
+                }
+                @if (tab === 'canjes') {
+                <h2>
+                    Canjes
+                </h2>
+                }
+                @if (tab === 'configuracion') {
+                <h2>
+                    Configuracion
+                </h2>
+                }
+            </div>
+        </div>
+
+    </div>
+</section>

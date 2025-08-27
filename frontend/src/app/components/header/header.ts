@@ -9,8 +9,17 @@ import { Auth } from '../../services/auth';
   styleUrl: './header.css'
 })
 export class Header {
-  private authService = inject(Auth);
+  
+  public authService = inject(Auth);
   constructor() { }
+
+  isLoggedIn(): boolean {
+    /**
+     * ? El método isLoggedIn verifica si el usuario está autenticado comprobando la existencia de un token.
+     * ! Esto es útil para mostrar u ocultar elementos de la interfaz de usuario según el estado de autenticación.
+     */
+    return !!this.authService.getToken();
+  }
   logout() {
     /**
      * ? El método logout elimina el token del localStorage y redirige al usuario a la página de inicio.

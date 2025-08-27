@@ -39,6 +39,7 @@ export class Login {
     console.log(this.form.value); //Retorna el objeto con los valores del formulario
     this.authService.login(this.form.value).subscribe({
       next: (response) => {
+        // Si el login es exitoso, se guarda el token en el servicio Auth
         this.authService.setToken(response.token);
 
         this.http.get('http://localhost:9090/api/user/profile')
