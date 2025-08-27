@@ -1,7 +1,5 @@
 package com.revalisso.backend.dto;
 
-import com.revalisso.backend.entity.*;
-import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
@@ -14,17 +12,17 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class DonacionDTO implements Serializable {
+public class ContribucionDTO implements Serializable {
     private PersonaDTO persona;
     private EstadoDTO estado;
     private CategoriaDTO categoria;
 
     private List<HistorialPuntoDTO> historialPuntos;
     private List<ArchivoDTO> archivos;
-    private List<ReseniaDonacionDTO> reseniasDonacion;
-    private Timestamp fechaDonacion;
+    private List<ReseniaContribucionDTO> reseniasContribucion;
+    private Timestamp fechaContribucion;
     private int cantidadAproximada;
-    private String tituloDonacion;
+    private String tituloContribucion;
 
-    private String descripcionDonacion;
+    private String descripcionContribucion;
 }

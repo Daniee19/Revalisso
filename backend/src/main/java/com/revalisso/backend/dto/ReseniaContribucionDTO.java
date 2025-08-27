@@ -1,6 +1,5 @@
 package com.revalisso.backend.dto;
 
-import com.revalisso.backend.entity.Donacion;
 import lombok.*;
 
 import java.io.Serializable;
@@ -11,9 +10,9 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ReseniaDonacionDTO implements Serializable {
+public class ReseniaContribucionDTO implements Serializable {
 
-    private DonacionDTO donacion;
+    private ContribucionDTO contribucion;
     private String comentario;
     private Integer calificacion;
     private Timestamp fechaResenia;

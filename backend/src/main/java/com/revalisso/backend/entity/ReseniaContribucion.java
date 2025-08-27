@@ -13,14 +13,14 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @Builder
 @Entity
-public class ReseniaDonacion {
+public class ReseniaContribucion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idResenia;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_donacion")
-    private Donacion donacion;
+    @JoinColumn(name = "id_contribucion")
+    private Contribucion contribucion;
 
     private String comentario;
     private Integer calificacion;

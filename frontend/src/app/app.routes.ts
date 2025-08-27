@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { Home } from './views/home/home';
 import { About } from './views/about/about';
 import { Contact } from './views/contact/contact';
-import { Products } from './views/products/products';
+import { Contributions } from './views/contributions/contributions';
 import { Login } from './views/login/login';
 import { Register } from './views/register/register';
 import { authGuard } from './guards/auth.guard';
@@ -19,7 +19,7 @@ export const routes: Routes = [
     { path: '', component: Home },
     { path: "about", component: About },
     { path: "contact", component: Contact },
-    { path: "products", component: Products },
+    { path: "products", component: Contributions },
     { path: "login", component: Login },
     { path: "register", component: Register },
     // Rutas protegidas con guard

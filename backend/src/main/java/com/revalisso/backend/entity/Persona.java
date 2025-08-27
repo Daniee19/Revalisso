@@ -28,7 +28,7 @@ public class Persona {
     private String password;
     private String celular;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "persona", cascade = CascadeType.ALL)
-    private List<Donacion> donaciones;
+    private List<Contribucion> contribuciones;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "persona", cascade = CascadeType.ALL)
     private List<Blog> blogs;

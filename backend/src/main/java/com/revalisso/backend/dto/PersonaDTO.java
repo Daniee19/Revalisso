@@ -16,6 +16,6 @@ public class PersonaDTO implements Serializable {
     private String apellido;
     private String celular;
     private String correo;
-    private List<DonacionDTO> donaciones;
+    private List<ContribucionDTO> contribuciones;
     private List<BlogDTO> blogs;
 }

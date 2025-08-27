@@ -39,7 +39,7 @@ public class PersonaController {
         persona.put("celular", personaDTO.getCelular());
         persona.put("rol", personaDTO.getRol().getNombreRol());
         persona.put("correo", personaDTO.getCorreo());
-        persona.put("donaciones", personaDTO.getDonaciones().stream().map(d -> d.getTituloDonacion()).toList());
+        persona.put("donaciones", personaDTO.getContribuciones().stream().map(d -> d.getTituloContribucion()).toList());
         persona.put("blogs", personaDTO.getBlogs().stream().map(b -> b.getDescripcionBlog()).toList());
 
 //        ResponseEntity.ok("Token recibido: " + token);

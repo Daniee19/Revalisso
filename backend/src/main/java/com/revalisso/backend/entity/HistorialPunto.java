@@ -16,7 +16,7 @@ public class HistorialPunto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idHistorialPunto;
     @ManyToOne(fetch = FetchType.LAZY)
-    private Donacion donacion;
+    private Contribucion contribucion;
 
     private String motivo;
     private int cantidadPuntos;

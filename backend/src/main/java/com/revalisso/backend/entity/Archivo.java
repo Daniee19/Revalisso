@@ -23,6 +23,6 @@ public class Archivo {
     private Blog blog; //Este es la variable "blog" que se mapea desde la otra clase (Blog)
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_donacion")
-    private Donacion donacion;
+    @JoinColumn(name = "id_contribucion")
+    private Contribucion contribucion;
 }

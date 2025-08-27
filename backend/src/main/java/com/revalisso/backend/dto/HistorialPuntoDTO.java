@@ -10,7 +10,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Builder
 public class HistorialPuntoDTO implements Serializable {
-    private DonacionDTO donacion;
+    private ContribucionDTO contribucion;
 
     private String motivo;
     private int cantidadPuntos;

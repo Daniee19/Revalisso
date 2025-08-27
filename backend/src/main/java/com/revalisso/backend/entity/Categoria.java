@@ -20,6 +20,6 @@ public class Categoria {
     private String nombreCategoria;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria", cascade = CascadeType.ALL)
-    private List<Donacion> donaciones;
+    private List<Contribucion> contribuciones;
 
 }

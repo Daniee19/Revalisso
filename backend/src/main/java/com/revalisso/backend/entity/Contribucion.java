@@ -14,10 +14,10 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Donacion {
+public class Contribucion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idDonacion;
+    private Long idContribucion;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_persona")
     private Persona persona;
@@ -26,22 +26,22 @@ public class Donacion {
     @JoinColumn(name = "id_categoria")
     private Categoria categoria;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "donacion", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "contribucion", cascade = CascadeType.ALL)
     private List<HistorialPunto> historialPuntos;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_estado")
     private Estado estado;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "donacion", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "contribucion", cascade = CascadeType.ALL)
     private List<Archivo> archivos;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "donacion", cascade = CascadeType.ALL)
-    private List<ReseniaDonacion> reseniasDonacion;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "contribucion", cascade = CascadeType.ALL)
+    private List<ReseniaContribucion> reseniasContribucion;
 
     private int cantidadAproximada;
-    private String tituloDonacion;
-    private Timestamp fechaDonacion;
-    private String descripcionDonacion;
+    private String tituloContribucion;
+    private Timestamp fechaContribucion;
+    private String descripcionContribucion;
 
 }

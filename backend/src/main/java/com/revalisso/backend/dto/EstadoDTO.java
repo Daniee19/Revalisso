@@ -13,6 +13,6 @@ import java.util.List;
 public class EstadoDTO implements Serializable {
 
     private String nombreEstado;
-    List<DonacionDTO> donaciones;
+    List<ContribucionDTO> contribuciones;
 
 }

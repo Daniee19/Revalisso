@@ -15,5 +15,5 @@ public class ArchivoDTO implements Serializable {
     private String tipoArchivo;
     private BlogDTO blog; //Este es la variable "blog" que se mapea desde la otra clase (Blog)
 
-    private DonacionDTO donacion;
+    private ContribucionDTO contribucion;
 }

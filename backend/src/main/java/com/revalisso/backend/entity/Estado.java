@@ -17,6 +17,6 @@ public class Estado {
     private String nombreEstado;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "estado", cascade = CascadeType.ALL)
-    List<Donacion> donaciones;
+    List<Contribucion> contribuciones;
 
 }
