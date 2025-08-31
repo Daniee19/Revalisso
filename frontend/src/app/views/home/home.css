@@ -29,7 +29,8 @@
 
 .botones>button {
     padding: 10px;
-    background-color: yellow;
+    background-color: rgb(255, 255, 0);
+    color:black;
     border: none;
     transition: all 0.3s;
 }

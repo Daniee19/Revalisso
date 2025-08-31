@@ -19,10 +19,6 @@ public class Archivo {
     private String tipoArchivo;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_blog") //Es el nombre de la columna de la llave foránea en la clase Archivo
-    private Blog blog; //Este es la variable "blog" que se mapea desde la otra clase (Blog)
-
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_contribucion")
     private Contribucion contribucion;
 }

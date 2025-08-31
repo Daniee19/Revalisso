@@ -1,9 +1,10 @@
+//Los atributos del backend deben de coincidir con los atributos definido desde la interface (frontend).
 export interface Persona {
     nombre: string;
     apellido: string;
     celular: string;
     rol: string;
     correo: string;
-    donaciones: string[];
-    blogs: string[];
+    contribuciones: Object[];
+    blogs: Object[];
 }

@@ -7,12 +7,14 @@ import java.util.List;
 @Data
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class EstadoDTO implements Serializable {
 
     private String nombreEstado;
-    List<ContribucionDTO> contribuciones;
+//    List<ContribucionDTO> contribuciones;
 
+    public EstadoDTO(String nombreEstado) {
+        this.nombreEstado = nombreEstado;
+    }
 }

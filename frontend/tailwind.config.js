@@ -4,7 +4,11 @@ module.exports = {
     "./src/**/*.{html,ts}",   // 👈 Incluye los templates y los standalone components
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Roboto', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }

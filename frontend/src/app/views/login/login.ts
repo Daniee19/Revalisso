@@ -41,11 +41,13 @@ export class Login {
       next: (response) => {
         // Si el login es exitoso, se guarda el token en el servicio Auth
         this.authService.setToken(response.token);
-
+        //Se hace otra llamada para traer los datos de ese usuario logueado exitosamente
         this.http.get('http://localhost:9090/api/user/profile')
           .subscribe((user: any) => {
-            console.log("Lo traído del backend es: ", user)
+            console.log("Lo traído del backend (login.ts) es: ", user)
             this.authService.setUserData(user);
+          
+
           });
 
         // Redirigir tras login

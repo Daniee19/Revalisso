@@ -6,14 +6,13 @@
                 <a routerLink="/home"><i class="fa-solid fa-angle-left" style="color: #000000;"></i> Regresar
                 </a>
             </div>
-            <div
-                class="flex flex-row items-center my-6 gap-6 font-bold text-2xl border-b border-gray-200 p-6">
+            <div class="flex flex-row items-center my-6 gap-6 font-bold text-2xl border-b border-gray-200 p-6">
                 <img src="../../../assets/img/foto_perfil.jpg" alt="foto_perfil" class="w-28 h-28 rounded-2xl mb-4">
                 <div>
                     {{ user?.nombre }}
                     {{ user?.apellido }}
 
-                    <p class="text-sm">Donaciones: {{ user?.donaciones?.length }}</p>
+                    <p class="text-sm">Contribuciones: {{ user?.contribuciones?.length }}</p>
 
                 </div>
             </div>
@@ -25,7 +24,7 @@
                 </div>
                 <div>
                     <h2>Teléfono</h2>
-                    <p>{{ user?.celular }}</p>
+                    <p>{{ user?.celular || 'Sin asignar' }}</p>
                 </div>
             </div>
             <div class="flex p-6 gap-2">
@@ -36,16 +35,21 @@
         <!-- Lado derecho -->
         <div class="p-6 w-[74%]">
             <div class="flex flex-row gap-6 text-gray-800 font-bold pb-4 text-center">
-                <button (click)="tab = 'general'" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">General</button>
+                <button (click)="tab = 'general'"
+                    class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">General</button>
                 <button (click)="tab = 'actividad'" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Actividad
                     reciente</button>
 
-                <button (click)="tab = 'puntos'" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Mis puntos</button>
-                <button (click)="tab = 'logros'" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Logros</button>
-                <button (click)="tab = 'historialDonaciones'" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Historial
+                <button (click)="tab = 'puntos'" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Mis
+                    puntos</button>
+                <button (click)="tab = 'logros'"
+                    class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Logros</button>
+                <button (click)="tab = 'historialDonaciones'"
+                    class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Historial
                     de
                     donaciones</button>
-                <button (click)="tab = 'canjes'" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Canjes</button>
+                <button (click)="tab = 'canjes'"
+                    class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Canjes</button>
                 <button (click)="tab = 'configuracion'"
                     class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Configuración</button>
             </div>

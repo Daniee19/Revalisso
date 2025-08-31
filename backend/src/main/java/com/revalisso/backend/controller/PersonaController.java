@@ -1,6 +1,10 @@
 package com.revalisso.backend.controller;
 
+import com.revalisso.backend.dto.BlogDTO;
+import com.revalisso.backend.dto.ContribucionDTO;
 import com.revalisso.backend.dto.PersonaDTO;
+import com.revalisso.backend.service.IBlogService;
+import com.revalisso.backend.service.IContribucionService;
 import com.revalisso.backend.service.IPersonaService;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -19,6 +24,13 @@ import java.util.Map;
 public class PersonaController {
     @Autowired
     IPersonaService personaService;
+
+    @Autowired
+    IContribucionService contribucionService;
+
+    @Autowired
+    IBlogService blogService;
+
 
     @Value("${jwt.secret}")
     private String SECRET_KEY;
@@ -32,15 +44,19 @@ public class PersonaController {
         System.out.println("El correo es: " + username);
 
         PersonaDTO personaDTO = personaService.getPersonaDTObyCorreo(username);
+        List<ContribucionDTO> contribucionDTO = contribucionService.getContribucionByIdUsuario(personaDTO.getId());
+
+        //Hacer la sección de blogs
+        List<BlogDTO> blogDTO = blogService.getBlogByIdUsuario(personaDTO.getId());
 
         Map<String, Object> persona = new HashMap<>();
         persona.put("nombre", personaDTO.getNombre());
         persona.put("apellido", personaDTO.getApellido());
         persona.put("celular", personaDTO.getCelular());
-        persona.put("rol", personaDTO.getRol().getNombreRol());
+        persona.put("rol", personaDTO.getRol());
         persona.put("correo", personaDTO.getCorreo());
-        persona.put("donaciones", personaDTO.getContribuciones().stream().map(d -> d.getTituloContribucion()).toList());
-        persona.put("blogs", personaDTO.getBlogs().stream().map(b -> b.getDescripcionBlog()).toList());
+        persona.put("contribuciones", contribucionDTO);
+        persona.put("blogs", blogDTO);
 
 //        ResponseEntity.ok("Token recibido: " + token);
         return ResponseEntity.ok(persona);

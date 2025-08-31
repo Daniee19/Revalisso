@@ -34,9 +34,6 @@ public class Contribucion {
     private Estado estado;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "contribucion", cascade = CascadeType.ALL)
-    private List<Archivo> archivos;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "contribucion", cascade = CascadeType.ALL)
     private List<ReseniaContribucion> reseniasContribucion;
 
     private int cantidadAproximada;

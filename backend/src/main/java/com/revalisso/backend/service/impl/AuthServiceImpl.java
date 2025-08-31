@@ -51,14 +51,10 @@ public class AuthServiceImpl implements IAuthService {
     @Override
     public ResponseEntity<?> register(RegisterRequest request) {
 
-
-        //Si el id no se menciona entonces es 1 (ROL DE USUARIO)
-        Long rolId = request.getRol() != null ? request.getRol() : 1L;
-
-        Rol rolecito = rolRepository.findById(rolId).orElseThrow(() ->
+        Rol rolecito = rolRepository.findById(1L).orElseThrow(() ->
                 new RuntimeException("Rol no encontrado"));
 
-
+        //OJO: EL ROL DEBE ESTAR AGREGADO DESDE ANTES
         Persona persona = Persona.builder()
                 .nombre(request.getNombres())
                 .apellido(request.getApellidos())

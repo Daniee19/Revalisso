@@ -17,13 +17,12 @@ public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idBlog;
+    private String tituloBlog;
     private String descripcionBlog;
+    private String urlBlog;
+    private String fotoBlog;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_persona")
     private Persona persona;
-
-    //El mappedBy es como si dijere desde el otro archivo "Archivo" dirigete a ese archivo llamado blog
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "blog", cascade = CascadeType.ALL)
-    private List<Archivo> listaArchivo;
 }

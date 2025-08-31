@@ -19,7 +19,7 @@ export const routes: Routes = [
     { path: '', component: Home },
     { path: "about", component: About },
     { path: "contact", component: Contact },
-    { path: "products", component: Contributions },
+    { path: "contributions", component: Contributions },
     { path: "login", component: Login },
     { path: "register", component: Register },
     // Rutas protegidas con guard
