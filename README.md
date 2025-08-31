@@ -13,8 +13,8 @@ La idea principal es fomentar una cultura basada en la reutilización, la solida
 
 Revalisso nace como una solución innovadora para incentivar el intercambio y aprovechamiento de recursos, permitiendo:
 
-- Donar productos que ya no utilizas.
-- Acumular puntos por cada donación validada.
+- Contribuir con productos que ya no utilizas.
+- Acumular puntos por cada contribución validada.
 - Canjear puntos por recompensas o beneficios.
 - Participar en una red de apoyo y reutilización.
 
@@ -37,7 +37,7 @@ Revalisso nace como una solución innovadora para incentivar el intercambio y ap
 
 ## 🗄️ Vista previa de la base de datos
 
-![Vista previa](bd.jpg)
+![Vista previa](Revalisso_DB.jpg)
 *Modelo conceptual inicial de la base de datos*
 
 ## Autor
