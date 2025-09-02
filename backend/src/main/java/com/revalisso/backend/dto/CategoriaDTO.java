@@ -14,10 +14,13 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class CategoriaDTO implements Serializable {
+    private Long idCategoria;
+    //Esto se estará enviando como clave. En angular poner en interface ese nombre.
     private String nombreCategoria;
 //    private List<ContribucionDTO> contribuciones;
 
     public CategoriaDTO(Categoria categoria) {
+        this.idCategoria = categoria.getIdCategoria();
         this.nombreCategoria = categoria.getNombreCategoria();
     }
 }

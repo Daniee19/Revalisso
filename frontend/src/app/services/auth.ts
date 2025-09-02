@@ -50,7 +50,7 @@ export class Auth {
     // ! Como servicio se debe retornar un observable para que los componentes puedan suscribirse a él.
     return this.http.post<{ token: string }>(`${this.apiUrl}/login`, credentials);
   }
-
+  
   register(credentials: { nombres: string; apellidos: string; correo: string; password: string; celular?: string }) {
     return this.http.post<any>(`${this.apiUrl}/register`, credentials);
   }

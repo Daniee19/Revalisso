@@ -15,12 +15,12 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class ContribucionDTO implements Serializable {
-    //    private PersonaDTO persona;
+    private PersonaDTO persona;
     private EstadoDTO estado;
     private CategoriaDTO categoria;
 
     //    private List<HistorialPuntoDTO> historialPuntos;
-    private List<ArchivoDTO> archivos;
+//    private List<ArchivoDTO> archivos;
     //    private List<ReseniaContribucionDTO> reseniasContribucion;
     private Timestamp fechaContribucion;
     private int cantidadAproximada;
@@ -29,13 +29,15 @@ public class ContribucionDTO implements Serializable {
 
     public ContribucionDTO(Contribucion contribucion) {
         //Se está asignando el valor dado desde el service, con finalidad de que las entidades tengan todos los valores
-        this.estado = new EstadoDTO(contribucion.getEstado().getNombreEstado());
+        this.estado = new EstadoDTO(contribucion.getEstado());
         this.categoria = new CategoriaDTO(contribucion.getCategoria());
+        this.persona = new PersonaDTO(contribucion.getPersona());
         this.cantidadAproximada = contribucion.getCantidadAproximada();
         this.tituloContribucion = contribucion.getTituloContribucion();
         this.descripcionContribucion = contribucion.getDescripcionContribucion();
         this.fechaContribucion = contribucion.getFechaContribucion();
-        //Esencial para cambiar la entidad Archivo a ArchivoDTO
-//        this.archivos = contribucion.getArchivos().stream().map(ArchivoDTO::new).toList(); //-> lo que hace es pasar como parámetro la entidad Archivo en el constructor del DTO ArchivoDTO.
     }
 }
+//Esencial para cambiar la entidad Archivo a ArchivoDTO
+//        this.archivos = contribucion.getArchivos().stream().map(ArchivoDTO::new).toList(); //-> lo que hace es pasar como parámetro la entidad Archivo en el constructor del DTO ArchivoDTO.
+

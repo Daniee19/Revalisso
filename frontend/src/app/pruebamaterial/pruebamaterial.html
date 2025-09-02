@@ -1,0 +1,25 @@
+<form class="py-20" [formGroup]="contributionForm" (ngSubmit)="insertar()">
+    <mat-form-field appearance="fill">
+        <mat-label>Título</mat-label>
+        <input matInput placeholder="Escribe el título" formControlName="title">
+        @if(contributionForm.get('title')?.hasError('required')){
+        <mat-error>
+            El título es obligatorio
+        </mat-error>
+        }
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput placeholder="Escribe la descripción" formControlName="description"></textarea>
+        @if(contributionForm.get('description')?.hasError('required')){
+        <mat-error>
+            La descripción es obligatoria
+        </mat-error>
+        }
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">
+        Enviar
+    </button>
+</form>

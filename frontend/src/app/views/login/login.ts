@@ -47,7 +47,6 @@ export class Login {
             console.log("Lo traído del backend (login.ts) es: ", user)
             this.authService.setUserData(user);
           
-
           });
 
         // Redirigir tras login

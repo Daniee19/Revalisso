@@ -8,6 +8,7 @@ import { Register } from './views/register/register';
 import { authGuard } from './guards/auth.guard';
 import { Checkout } from './views/checkout/checkout';
 import { Profile } from './views/profile/profile';
+import { Pruebamaterial } from './pruebamaterial/pruebamaterial';
 export const routes: Routes = [
     // Definición de las rutas de la aplicación
     // Cada ruta tiene un path y un componente asociado
@@ -25,6 +26,7 @@ export const routes: Routes = [
     // Rutas protegidas con guard
     { path: 'checkout', component: Checkout, canActivate: [authGuard] },
     { path: 'profile', component: Profile, canActivate: [authGuard] },
+    { path: 'pruebamaterial', component: Pruebamaterial },
     // Ruta para manejar cualquier otra ruta no definida
     { path: "**", redirectTo: '' }
 ];

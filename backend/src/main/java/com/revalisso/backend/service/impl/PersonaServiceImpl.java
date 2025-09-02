@@ -16,8 +16,9 @@ public class PersonaServiceImpl implements IPersonaService {
     PersonaRepository personaRepository;
 
     @Override
-    public Persona getPersona(int id) {
-        return null;
+    public Persona getPersona(Long idPersona) {
+        System.out.println("El id de persona es: "+idPersona);
+        return personaRepository.findById(idPersona).get();
     }
 
     @Override

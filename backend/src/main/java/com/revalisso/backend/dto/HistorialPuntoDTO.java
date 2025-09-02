@@ -1,6 +1,8 @@
 package com.revalisso.backend.dto;
 
+import com.revalisso.backend.entity.HistorialPunto;
 import lombok.*;
+
 import java.io.Serializable;
 
 @Data
@@ -14,4 +16,8 @@ public class HistorialPuntoDTO implements Serializable {
 
     private String motivo;
     private int cantidadPuntos;
+
+    public HistorialPuntoDTO(HistorialPunto historial) {
+
+    }
 }

@@ -31,7 +31,6 @@ public class PersonaController {
     @Autowired
     IBlogService blogService;
 
-
     @Value("${jwt.secret}")
     private String SECRET_KEY;
 
@@ -48,8 +47,9 @@ public class PersonaController {
 
         //Hacer la sección de blogs
         List<BlogDTO> blogDTO = blogService.getBlogByIdUsuario(personaDTO.getId());
-
+        //Se está devolviendo una respuesta en un map para devolver tipo json
         Map<String, Object> persona = new HashMap<>();
+        persona.put("id", personaDTO.getId());
         persona.put("nombre", personaDTO.getNombre());
         persona.put("apellido", personaDTO.getApellido());
         persona.put("celular", personaDTO.getCelular());

@@ -8,7 +8,7 @@ import java.util.List;
 
 
 public interface IPersonaService {
-    public Persona getPersona(int id);
+    public Persona getPersona(Long idPersona);
     public List<Persona> getAllPersonas();
     public boolean addPersona(Persona persona);
     public boolean updatePersona(Persona persona);

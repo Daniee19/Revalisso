@@ -1,5 +1,6 @@
 package com.revalisso.backend.entity;
 
+import com.revalisso.backend.dto.ContribucionDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

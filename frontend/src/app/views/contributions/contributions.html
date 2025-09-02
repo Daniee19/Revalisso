@@ -1,6 +1,18 @@
 <section class="w-screen h-screen bg-slate-500 py-[5%]">
     <div class="container mx-auto bg-white py-10 px-40 h-[100%]">
-        <h1 class="text-3xl font-semibold mb-7">Contribuciones</h1>
+        <div class="flex gap-5 justify-between items-center mb-7">
+            <h1 class="text-3xl font-semibold ">Contribuciones</h1>
+            @if(view == "contributions"){
+            <button (click)="view='create-contribution'" class="bg-slate-500 p-2 text-white rounded-xl">Agregar una
+                Contribución</button>
+            }
+            @if(view=="create-contribution"){
+            <button (click)="view='contributions';consultarContribuciones()"
+                class="bg-slate-500 p-2 text-white rounded-xl">Ver
+                contribuciones</button>
+            }
+        </div>
+        @if(view == "contributions"){
         <div class="grid grid-cols-5 text-center gap-4">
             @for(a of arrayContributions; track a){
             <div class="bg-slate-500 h-60 w-60">
@@ -11,5 +23,105 @@
             </div>
             }
         </div>
+        }
+        @if (view=="create-contribution") {
+
+        <form [formGroup]="form" (ngSubmit)="agregarContribucion()">
+            <div class="grid grid-cols-2 gap-4">
+                <!-- Nombre -->
+                <mat-form-field appearance="fill">
+                    <mat-label class="font-black" for="nombre">Nombre</mat-label>
+                    <input matInput class="bg-slate-100 px-1" type="text" id="nombre"
+                        formControlName="tituloContribucion" placeholder="El nombre del producto">
+
+                    @if (form.get('nombre')?.touched && form.get('nombre')?.hasError('required')) {
+                    <mat-error class="error">El nombre es obligatorio</mat-error>
+                    }
+                </mat-form-field>
+                <!-- Descripción -->
+                <mat-form-field appearance="fill">
+                    <mat-label class="font-black" for="descripcion">Descripcion</mat-label>
+                    <input matInput type="text" id="descripcion" formControlName="descripcionContribucion"
+                        placeholder="Descripción del producto">
+                    @if (form.get('descripcion')?.touched && form.get('descripcion')?.hasError('required')) {
+                    <mat-error class="error">La descripción es obligatoria</mat-error>
+                    }
+                </mat-form-field>
+
+                <!-- Categoria -->
+                <mat-form-field appearance="fill">
+                    <mat-label class="font-black" for="categoria">Categoría</mat-label>
+
+                    <mat-select id="categoria" formControlName="categoria">
+                        @for(c of arrayCategorias; track c){
+                        <mat-option [value]="c">{{c?.nombreCategoria}}</mat-option>
+                        }
+                    </mat-select>
+
+                    @if (form.get('categoria')?.touched && form.get('categoria')?.hasError('required')) {
+                    <mat-error class="error">La categoria es obligatoria</mat-error>
+                    }
+                </mat-form-field>
+
+                <!-- Cantidad aproximada -->
+                <mat-form-field appearance="fill">
+                    <mat-label class="font-black" for="cantidad_aproximada">Cantidad (Unidades)</mat-label>
+                    <input matInput type="number" min="1" id="cantidad_aproximada" formControlName="cantidadAproximada"
+                        placeholder="Cantidad">
+                    @if (form.get('cantidad_aproximada')?.touched &&
+                    form.get('cantidad_aproximada')?.hasError('required')) {
+                    <mat-error class="error">La cantidad es obligatoria</mat-error>
+                    }
+                </mat-form-field>
+
+                <!-- Estado -->
+                <mat-form-field appearance="fill">
+                    <mat-label class="font-black" for="estado">Estado</mat-label>
+
+                    <mat-select id="estado" formControlName="estado">
+                        @for(e of arrayEstados; track e){
+                        <mat-option [value]="e">{{e?.nombreEstado}}</mat-option>
+                        }
+                    </mat-select>
+
+                </mat-form-field>
+
+                <!-- Cantidad aproximada -->
+                <mat-form-field appearance="fill">
+                    <mat-label class="font-black" for="ubicacion">Ubicación</mat-label>
+                    <input matInput type="text" id="ubicacion" formControlName="ubicacion" placeholder="Ubicación">
+                    @if (form.get('ubicacion')?.touched &&
+                    form.get('ubicacion')?.hasError('required')) {
+                    <mat-error class="error">La ubicación es obligatoria</mat-error>
+                    }
+                </mat-form-field>
+
+                <!-- Url de la foto -->
+                <mat-form-field appearance="fill">
+                    <mat-label class="font-black" for="url_foto">Subir archivo</mat-label>
+                    <input matInput [value]="fileName" readonly>
+                    <button mat-icon-button matSuffix (click)="fileInput.click()">
+                        <mat-icon>attach_file</mat-icon>
+                    </button>
+                </mat-form-field>
+
+                <input type="file" (change)="onFileSelected($event)" hidden #fileInput>
+
+                <!-- Cantidad de puntos -->
+                <mat-form-field appearance="fill">
+                    <mat-label class="font-black" for="cantidad_puntos">Cantidad de puntos</mat-label>
+                    <input matInput type="number" min="0" id="cantidad_puntos" formControlName="cantidadPuntos"
+                        placeholder="Cantidad de puntos">
+                    @if (form.get('cantidad_puntos')?.touched &&
+                    form.get('cantidad_puntos')?.hasError('required')) {
+                    <mat-error class="error">La cantidad es obligatoria</mat-error>
+                    }
+                </mat-form-field>
+
+            </div>
+            <button mat-raised-button class="bg-blue-800 px-5 py-2" type="submit"
+                [disabled]="form.invalid">Crear</button>
+        </form>
+        }
     </div>
 </section>
