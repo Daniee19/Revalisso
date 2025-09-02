@@ -37,7 +37,7 @@ Revalisso nace como una solución innovadora para incentivar el intercambio y ap
 
 ## 🗄️ Vista previa de la base de datos
 
-![Vista previa](Revalisso_DB.jpg)
+![Vista previa](revalisso_db.png)
 *Modelo conceptual inicial de la base de datos*
 
 ## Autor
