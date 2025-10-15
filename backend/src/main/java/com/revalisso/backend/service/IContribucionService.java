@@ -6,7 +6,7 @@ import com.revalisso.backend.entity.Contribucion;
 import java.util.List;
 
 public interface IContribucionService {
-    public ContribucionDTO getContribucion(Long id);
+    public Contribucion getContribucion(Long id);
 
     public List<ContribucionDTO> getAllContribucion();
 

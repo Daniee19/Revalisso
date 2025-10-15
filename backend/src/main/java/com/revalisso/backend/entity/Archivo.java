@@ -1,5 +1,6 @@
 package com.revalisso.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +17,6 @@ public class Archivo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idArchivo;
     private String rutaArchivo;
-    private String tipoArchivo;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_contribucion")

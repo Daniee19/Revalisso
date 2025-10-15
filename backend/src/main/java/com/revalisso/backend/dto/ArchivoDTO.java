@@ -12,15 +12,19 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Builder
 public class ArchivoDTO implements Serializable {
+    private Long idArchivo;
     private String rutaArchivo;
-    private String tipoArchivo;
 //    private BlogDTO blog; //Este es la variable "blog" que se mapea desde la otra clase (Blog)
 
-    private ContribucionDTO contribucion;
+    private Long idContribucion;
 
     public ArchivoDTO(Archivo archivo) {
+        System.out.println("Estoy en el constructor del ArchivoDTO: " + archivo);
+        this.idArchivo = archivo.getIdArchivo();
         this.rutaArchivo = archivo.getRutaArchivo();
-        this.tipoArchivo = archivo.getTipoArchivo();
-        this.contribucion = new ContribucionDTO(archivo.getContribucion());
+
+        if (archivo.getContribucion().getIdContribucion() != null) {
+            this.idContribucion = archivo.getContribucion().getIdContribucion();
+        }
     }
 }

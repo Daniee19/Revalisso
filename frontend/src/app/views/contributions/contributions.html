@@ -13,13 +13,18 @@
             }
         </div>
         @if(view == "contributions"){
-        <div class="grid grid-cols-5 text-center gap-4">
+        <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 p-4">
             @for(a of arrayContributions; track a){
-            <div class="bg-slate-500 h-60 w-60">
-                <img src="https://assets2.razerzone.com/images/pnx.assets/6cee978bbdc193941f456db3e3d453fc/cobra.webp"
-                    alt="mouse_gamer">
-                <span class="text-xl font-semibold">{{a?.tituloContribucion}}</span> <br />
-                {{ a?.descripcionContribucion }}
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+                <div class="h-48 w-full overflow-hidden">
+                    <img [src]="getImagenUrl(a.archivos[0].rutaArchivo)" alt="{{a.tituloContribucion}}"
+                        class="w-full h-full object-cover">
+                </div>
+                <div class="p-4 text-center">
+                    <h3 class="text-lg font-semibold text-gray-800 truncate">{{a?.tituloContribucion}}</h3>
+                    <p class="text-gray-600 mt-2 text-sm line-clamp-3">{{ a?.descripcionContribucion }}</p>
+                </div>
+                <button class="bg-slate-500 rounded-xl p-2 text-white m-3">Añadir al carrito</button>
             </div>
             }
         </div>
@@ -78,9 +83,9 @@
                 <mat-form-field appearance="fill">
                     <mat-label class="font-black" for="estado">Estado</mat-label>
 
-                    <mat-select id="estado" formControlName="estado">
+                    <mat-select id="estado" formControlName="idEstado">
                         @for(e of arrayEstados; track e){
-                        <mat-option [value]="e">{{e?.nombreEstado}}</mat-option>
+                        <mat-option [value]="e.idEstado">{{e?.nombreEstado}}</mat-option>
                         }
                     </mat-select>
 

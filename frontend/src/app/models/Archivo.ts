@@ -1,4 +1,7 @@
+import { Contribution } from "./Contribution";
+
 export interface Archivo {
+    idArchivo?: number;
     rutaArchivo: string;
-    tipoArchivo: string;
+    idContribucion: number;
 }

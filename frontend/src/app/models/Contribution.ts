@@ -4,6 +4,7 @@ import { Estado } from "./Estado";
 import { Persona } from "./Persona";
 
 export interface Contribution {
+    idContribucion: number;
     persona: Persona;
     estado: Estado;
     categoria: Categoria;

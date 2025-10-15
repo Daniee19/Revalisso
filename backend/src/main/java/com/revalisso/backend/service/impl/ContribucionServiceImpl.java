@@ -7,10 +7,7 @@ import com.revalisso.backend.entity.Contribucion;
 import com.revalisso.backend.entity.Estado;
 import com.revalisso.backend.entity.Persona;
 import com.revalisso.backend.repository.ContribucionRepository;
-import com.revalisso.backend.service.ICategoriaService;
-import com.revalisso.backend.service.IContribucionService;
-import com.revalisso.backend.service.IEstadoService;
-import com.revalisso.backend.service.IPersonaService;
+import com.revalisso.backend.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,14 +27,16 @@ public class ContribucionServiceImpl implements IContribucionService {
     @Autowired
     private ICategoriaService categoriaService;
 
-    @Override
-    public ContribucionDTO getContribucion(Long id) {
-        return null;
-    }
-
     @Autowired
     private IEstadoService estadoService;
 
+    @Autowired
+    private IArchivoService archivoService;
+
+    @Override
+    public Contribucion getContribucion(Long id) {
+        return contribucionRepository.findById(id).get();
+    }
 
     @Override
     public List<ContribucionDTO> getAllContribucion() {
@@ -46,6 +45,8 @@ public class ContribucionServiceImpl implements IContribucionService {
          * Se obtiene el resultado de la entidad traída del crud repository, lo convierto a dtp, pero dentro como un elemento de una lista para retornar ese valor de una lista con DTOs
          */
         contribucionRepository.findAll().forEach(contribucion -> {
+            //Busqueda de Archivos por id de contribucion
+            contribucion.setArchivos(archivoService.findArchivoByIdContribucion(contribucion.getIdContribucion()));
             System.out.println("Contribución: " + contribucion.getTituloContribucion() +
                     " | Categoria: " + (contribucion.getCategoria() != null ? contribucion.getCategoria().getIdCategoria() : "NULL"));
             lista.add(new ContribucionDTO(contribucion));
@@ -56,7 +57,9 @@ public class ContribucionServiceImpl implements IContribucionService {
     @Override
     public List<ContribucionDTO> getContribucionByIdUsuario(Long idUsuario) {
         System.out.println("El id del usuario es (getContribucionByIdUsuario): " + idUsuario);
-
+        /**
+         * Traeme las contribuciones por el id de Usuario/Persona
+         */
         return contribucionRepository.findByIdUsuario(idUsuario).stream().map(
                 contribucion -> new ContribucionDTO(contribucion)).collect(Collectors.toList());
     }
@@ -71,7 +74,8 @@ public class ContribucionServiceImpl implements IContribucionService {
                 .tituloContribucion(contribucionDTO.getTituloContribucion())
                 .descripcionContribucion(contribucionDTO.getDescripcionContribucion())
                 .fechaContribucion(contribucionDTO.getFechaContribucion())
-                .estado(estadoService.getEstadoById(contribucionDTO.getEstado().getIdEstado()))
+                .cantidadAproximada(contribucionDTO.getCantidadAproximada())
+                .estado(estadoService.getEstadoById(contribucionDTO.getIdEstado()))
                 .persona(personaService.getPersona(contribucionDTO.getPersona().getId()))
                 .categoria(categoriaService.getCategoriaById(contribucionDTO.getCategoria().getIdCategoria()))
                 .build();

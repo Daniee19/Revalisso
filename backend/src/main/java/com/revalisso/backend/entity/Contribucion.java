@@ -2,15 +2,16 @@ package com.revalisso.backend.entity;
 
 import com.revalisso.backend.dto.ContribucionDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -37,9 +38,14 @@ public class Contribucion {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "contribucion", cascade = CascadeType.ALL)
     private List<ReseniaContribucion> reseniasContribucion;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "contribucion", cascade = CascadeType.ALL)
+    private List<Archivo> archivos = new ArrayList<>();
+
     private int cantidadAproximada;
     private String tituloContribucion;
-    private Timestamp fechaContribucion;
+
+    @CreationTimestamp
+    private LocalDate fechaContribucion;
     private String descripcionContribucion;
 
 }

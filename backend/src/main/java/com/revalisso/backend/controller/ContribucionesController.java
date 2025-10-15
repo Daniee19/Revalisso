@@ -24,8 +24,9 @@ public class ContribucionesController {
 
     @PostMapping("/contribuciones")
     public ResponseEntity<?> addContribucion(@RequestBody ContribucionDTO contribucionDTO) {
-        System.out.println(contribucionDTO);
-        return ResponseEntity.ok(contribucionService.addContribucion(contribucionDTO));
+        System.out.println("La contribución traida del frontend para agregar a la base de datos es: "+contribucionDTO);
+        ContribucionDTO c = contribucionService.addContribucion(contribucionDTO);
+        return ResponseEntity.ok(c.getIdContribucion());
     }
     //Enviar información de la persona desde el front? o un id desde el backend
 }

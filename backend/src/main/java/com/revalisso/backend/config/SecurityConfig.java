@@ -30,8 +30,10 @@ public class SecurityConfig {
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/api/files/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/usuario/**").hasAnyRole("USUARIO", "ADMIN")
+                        .requestMatchers("/uploads/**").permitAll() // permite acceso a imágenes
                         .anyRequest().authenticated()
                 )
                 /**

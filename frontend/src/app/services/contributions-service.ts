@@ -19,8 +19,8 @@ export class ContributionsService {
   agregar(datos_contribucion:
     {
       persona: Persona, tituloContribucion: string, descripcionContribucion: string, categoria: Categoria,
-      cantidadAproximada: number, estado: number, /*url_foto: string*/
+      cantidadAproximada: number, idEstado: number, urlFoto: string
     }) {
-    return this.http.post<Contribution[]>(this.apiUrl + "/contribuciones", datos_contribucion);
+    return this.http.post<number>(this.apiUrl + "/contribuciones", datos_contribucion);
   }
 }
