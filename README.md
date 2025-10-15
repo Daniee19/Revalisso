@@ -40,6 +40,20 @@ Revalisso nace como una solución innovadora para incentivar el intercambio y ap
 ![Vista previa](revalisso_db.png)
 *Modelo conceptual inicial de la base de datos*
 
+## Datos iniciales a tomar en cuenta
+
+```sql
+-- Crear roles
+INSERT INTO rol(nombre_rol) VALUES ('USUARIO');
+INSERT INTO rol(nombre_rol) VALUES ('ADMIN');
+
+-- Crear estados
+insert into estado(nombre_estado) values ('Nuevo');
+insert into estado(nombre_estado) values ('Seminuevo');
+insert into estado(nombre_estado) values ('Usado');
+insert into estado(nombre_estado) values ('Dañado');
+```
+
 ## Autor
 <p align="left">
   <a href="https://github.com/Daniee19">
