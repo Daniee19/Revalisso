@@ -47,11 +47,18 @@ Revalisso nace como una solución innovadora para incentivar el intercambio y ap
 INSERT INTO rol(nombre_rol) VALUES ('USUARIO');
 INSERT INTO rol(nombre_rol) VALUES ('ADMIN');
 
+-- Crear categorías
+insert into estado(nombre_estado) values ('Hogar');
+insert into estado(nombre_estado) values ('Tecnología');
+insert into estado(nombre_estado) values ('Deporte');
+insert into estado(nombre_estado) values ('Música');
+
 -- Crear estados
 insert into estado(nombre_estado) values ('Nuevo');
 insert into estado(nombre_estado) values ('Seminuevo');
 insert into estado(nombre_estado) values ('Usado');
 insert into estado(nombre_estado) values ('Dañado');
+
 ```
 
 ## Autor
