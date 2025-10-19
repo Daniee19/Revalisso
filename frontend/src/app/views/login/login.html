@@ -1,40 +1,54 @@
 <div class="login-container">
     <div class="log-container_1">
-        <h4>Revalisso <i class="fa-solid fa-recycle" style="color: #000000;"></i></h4>
+        <h4 class="font-bold">Revalisso <i class="fa-solid fa-recycle" style="color: #000000;"></i></h4>
         <br />
-        <h2>Iniciar Sesión</h2>
+        <div class="flex flex-col items-center mb-5">
+            <h2 class="text-5xl font-extrabold text-[var(--color-secundario)]">Bienvenido</h2>
+            <h5 class="text-sm">Logueate con tu correo</h5>
+        </div>
+
         <form [formGroup]="form" (ngSubmit)="login()">
+            <div class="form-group w-80">
+                <div class="input-field ">
+                    <i
+                        class="fas fa-envelope fa-lg absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
 
-            <div class="form-group">
-                <label for="correo">Correo electrónico:</label>
-                <input type="email" id="correo" formControlName="correo" placeholder="ejemplo@correo.com">
+                    <input type="email" id="correo" formControlName="correo" placeholder=" "
+                        class="w-full border-none outline-none text-gray-800 placeholder-gray-400 bg-transparent" />
+                    <label for="correo" class="font-medium">
+                        Correo electrónico
+                    </label>
+                </div>
 
+                <!-- Validaciones -->
                 @if (form.get('correo')?.touched && form.get('correo')?.hasError('required')) {
-                <div class="error">El correo es obligatorio</div>
+                <div class="text-red-600 text-sm mt-1">El correo es obligatorio</div>
                 } @else if (form.get('correo')?.touched && form.get('correo')?.hasError('email')) {
-                <div class="error">El formato del correo es inválido</div>
+                <div class="text-red-600 text-sm mt-1">El formato del correo es inválido</div>
                 }
             </div>
 
             <div class="form-group">
-                <label for="contrasena">Contraseña:</label>
-                <input type="password" id="contrasena" formControlName="password" placeholder="********">
-
+                <div class="input-field ">
+                    <i class="fa fa-lock fa-lg absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" aria-hidden="true"></i>
+                    <input type="password" id="contrasena" formControlName="password" placeholder=" ">
+                    <label for="contrasena" class="font-medium">Contraseña</label>
+                </div>
                 @if (form.get('password')?.touched && form.get('password')?.hasError('required')) {
                 <div class="error">La contraseña es obligatoria</div>
                 }
             </div>
 
-            <button type="submit" [disabled]="form.invalid">Iniciar sesión</button>
+            <button class="bottom-4" type="submit" [disabled]="form.invalid">Iniciar sesión</button>
 
         </form>
         <button (click)="verificarJWT()">verificarJWT</button>
-        <a routerLink="/register">No tengo cuenta aún</a>
+        <a routerLink="/register" class="text-center font-normal text-sm">No tengo cuenta aún</a>
     </div>
 
 
     <div class="log-container_2">
-        <img src="../../../assets/img/donations.png" alt="donations_img">
+        <img src="../../../assets/img/foto_portada_edicion.png" alt="donations_img">
     </div>
     <script src="https://kit.fontawesome.com/c353473263.js" crossorigin="anonymous"></script>
 </div>;

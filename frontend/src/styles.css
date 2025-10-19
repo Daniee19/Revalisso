@@ -11,6 +11,16 @@
     font-family: 'Roboto', sans-serif;
 }
 
+:root {
+    --color-primario: #14281D;
+    --color-secundario: #355834;
+    --color-terciario: #FFFCF2;
+    --color-cuarto: #CCC5B9;
+    --color-quinto: #EB5E28;
+    --color-gris: #1e1e1e;
+    --error-color: red;
+}
+
 img {
     width: 100%;
 }
@@ -19,4 +29,5 @@ body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
+    background-color: var(--color-gris);
 }

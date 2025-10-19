@@ -1,14 +1,14 @@
 <div class="register-container">
     <div class="reg-container_1">
-        <h4>Revalisso <i class="fa-solid fa-recycle" style="color: #000000;"></i></h4>
+        <h4 class="font-bold">Revalisso <i class="fa-solid fa-recycle" style="color: #000000;"></i></h4>
         <br />
-        <h2>Registro</h2>
+        <h2 class="text-2xl font-bold">Registro</h2>
 
         <form [formGroup]="form" (ngSubmit)="register()">
 
             <!-- Nombres -->
             <div class="form-group">
-                <label for="nombres">Nombres:</label>
+                <label for="nombres" class="font-medium">Nombres:</label>
                 <input type="text" id="nombres" formControlName="nombres" placeholder="Tus nombres">
                 @if (form.get('nombres')?.touched && form.get('nombres')?.hasError('required')) {
                 <div class="error">Los nombres son obligatorios</div>
@@ -17,7 +17,7 @@
 
             <!-- Apellidos -->
             <div class="form-group">
-                <label for="apellidos">Apellidos:</label>
+                <label for="apellidos" class="font-medium">Apellidos:</label>
                 <input type="text" id="apellidos" formControlName="apellidos" placeholder="Tus apellidos">
                 @if (form.get('apellidos')?.touched && form.get('apellidos')?.hasError('required')) {
                 <div class="error">Los apellidos son obligatorios</div>
@@ -26,7 +26,7 @@
 
             <!-- Correo -->
             <div class="form-group">
-                <label for="correo">Correo electrónico:</label>
+                <label for="correo" class="font-medium">Correo electrónico:</label>
                 <input type="email" id="correo" formControlName="correo" placeholder="ejemplo@correo.com">
                 @if (form.get('correo')?.touched && form.get('correo')?.hasError('required')) {
                 <div class="error">El correo es obligatorio</div>
@@ -37,7 +37,7 @@
 
             <!-- Contraseña -->
             <div class="form-group">
-                <label for="contrasena">Contraseña:</label>
+                <label for="contrasena" class="font-medium">Contraseña:</label>
                 <input type="password" id="contrasena" formControlName="password" placeholder="********">
                 @if (form.get('password')?.touched && form.get('password')?.hasError('required')) {
                 <div class="error">La contraseña es obligatoria</div>
@@ -46,14 +46,14 @@
 
             <!-- Celular (opcional) -->
             <div class="form-group">
-                <label for="celular">Celular (opcional):</label>
+                <label for="celular" class="font-medium">Celular (opcional):</label>
                 <input type="tel" id="celular" formControlName="celular" placeholder="999-999-999">
             </div>
 
             <button type="submit" [disabled]="form.invalid">Registrarme</button>
         </form>
 
-        <a routerLink="/login">¿Ya tienes cuenta? Inicia sesión</a>
+        <a routerLink="/login" class="text-center font-normal text-sm block mt-3">¿Ya tienes cuenta? Inicia sesión</a>
     </div>
 
     <div class="reg-container_2">
